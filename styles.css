@@ -129,6 +129,8 @@ footer {
       ". form ."
       ". footer ."
       ;
+    background-image: linear-gradient(to bottom, rgb(255, 254, 255), rgb(255, 245, 244));
+    height: 100%;
   }
 
   .header {
@@ -187,8 +189,8 @@ footer {
   }
 
   .bg-img {
-    grid-column: filler-start / header-end;
-    grid-row: filler-start / footer-end;
+    grid-column: 1 / header-end;
+    grid-row: header-start / footer-end;
     background-repeat: no-repeat;
     background-color: rgb(255, 252, 252);
     background-image: url('./images/bg-pattern-desktop.svg');

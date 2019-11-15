@@ -20,18 +20,26 @@ body {
   height: 100vh;
 }
 
+.image {
+  grid-area: image;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .header {
-  /* background-color: blue; */
+  grid-area: header;
 }
 
 .text {
-  /* background-color: green; */
+  grid-area: txt;
 }
 
 .text h2 {
   color: black;
   font-family: 'Josefin Sans', sans-serif;
   font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 12px;
 }
 
 .text h2 span {
@@ -43,15 +51,11 @@ body {
   font-family: 'Josefin Sans', sans-serif;
   color: hsl(0, 36%, 70%);
   font-weight: 400;
+  line-height: 1.6em;
 }
 
 .form {
-  /* background-color: violet; */
-}
-
-.form input {
-  font-family: 'Josefin Sans', sans-serif;
-  font-weight: 400;
+  grid-area: form;
 }
 
 .form #email-input-errors {
@@ -60,13 +64,48 @@ body {
   font-family: 'Josefin Sans', sans-serif;
 }
 
-/* .image { */
-  /* background-color: red; */
-/* } */
+.form input {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 400;
+  width: 380px;
+  height: 55px;
+  padding: 14px 0 10px 30px;
+  border: 0.8px solid hsl(0, 36%, 70%);
+  border-radius: 42px;
+  font-size: 1.1em;
+}
 
-/* .content { */
- /* background-color: darkcyan;    */
-/* } */
+.form button::before {
+  /* display: inline-block; */
+  display: var(--form-error-visibility);
+  content: ' ';
+  background-image: url("./images/icon-error.svg");
+  background-size: 28px 28px;
+  height: 28px;
+  width: 28px;
+  left: -75px;
+  position: relative;
+}
+
+.form #email-input-errors {
+  margin-left: 30px;
+  margin-top: 10px;
+}
+
+.form ::placeholder {
+  color: hsl(0, 36%, 70%);
+}
+
+.form button {
+  margin-left: -55px;
+  height: 55px;
+  width: 95px;
+  position: absolute;
+  border-radius: 55px;
+  background-image: linear-gradient(135deg, hsl(0, 80%, 86%), hsl(0, 74%, 74%));
+  border: none;
+  box-shadow: -4px 6px 21px 3px hsl(0, 80%, 86%);
+}
 
 h1 {
   /* Hidden as not part of the design but needed for SEO */
@@ -74,138 +113,114 @@ h1 {
   display: none;
 }
 
+footer {
+  grid-area: footer;
+}
 
-@media only screen and (max-width: 370px) {
+@media only screen and (max-width: 375px) {
   /* MOBILE */
+  .container {
+    grid-template-columns: minmax(20px, auto) minmax(320px, auto) minmax(20px, auto);
+    grid-template-rows: 85px 250px auto auto auto;
+    grid-template-areas:
+      ". header ."
+      "image image image"
+      ". txt ."
+      ". form ."
+      ". footer ."
+      ;
+  }
 
-  /* .container {
-    
-  } */
+  .header {
+    align-self: center;
+  }
+
+  .header img {
+    max-height: 20px;
+  }
 
   .image {
     background-image: url("./images/hero-mobile.jpg");
   }
+
+  .text {
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+  }
+
+  .text h2 {
+    text-align: center;
+    font-size: 2.6em;
+    margin-top: 60px;
+  }
+
+  .form {
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+
+  .form input {
+    width: 285px;
+  }
+
+  .attribution {
+    text-align: center;
+  }
 }
 
 /* DESKTOP */
-@media only screen and (min-width: 371px) {
+@media only screen and (min-width: 376px) {
   .container {
-    /* background-color: green; */
-    grid-template-columns: 57fr 43fr;
+    grid-template-columns: 85px 57fr 43fr;
     grid-template-rows: auto;
-    grid-template-areas: 
-    "content image";
+    grid-template-areas:
+    ". header image"
+    ". txt    image"
+    ". form   image"
+    ". footer image";
   }
 
-  /* .filler {
-    grid-area: filler;
-  } */
-
-  .content {
-    grid-area: content;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 200px 340px auto auto;
-    grid-template-areas: 
-    "header"
-    "txt"
-    "form"
-    "footer";
-    min-width: 570px;
+  .bg-img {
+    grid-column: filler-start / header-end;
+    grid-row: filler-start / footer-end;
+    background-repeat: no-repeat;
     background-color: rgb(255, 252, 252);
     background-image: url('./images/bg-pattern-desktop.svg');
     background-size: cover;
-    padding-left: 85px;
-    background-repeat: no-repeat;
   }
 
   footer {
-    grid-area: footer;
     align-self: end;
   }
 
   .header {
-    grid-area: header;
     width: 100%;
   }
 
   .header img {
-    margin-top: 66px;
-    /* margin-left: 80px; */
+    z-index: 1000;
+    position: relative;
+    margin-top: 38px;
+    margin-bottom: 138px;
   }
 
   .text {
-    grid-area: txt;
-    /* margin-left: 85px; */
     max-width: 430px;
-    height: 200px;
+    max-height: 325px;
   }
 
   .text h2 {
-    text-transform: uppercase;
     font-size: 4em;
-    letter-spacing: 12px;
-  }
-
-  .text p {
-    line-height: 1.6em;
-  }
-
-  .form {
-    grid-area: form;
-    /* margin-left: 85px; */
-  }
-
-  .form input {
-    width: 380px;
-    height: 55px;
-    padding: 14px 0 10px 30px;
-    border: 0.8px solid hsl(0, 36%, 70%);
-    border-radius: 42px;
-    font-size: 1.1em;
-  }
-
-  .form button::before {
-    /* display: inline-block; */
-    display: var(--form-error-visibility);
-    content: ' ';
-    background-image: url("./images/icon-error.svg");
-    background-size: 28px 28px;
-    height: 28px;
-    width: 28px;
-    left: -75px;
-    position: relative;
-  }
-
-  .form #email-input-errors {
-    margin-left: 30px;
-    margin-top: 10px;
-  }
-
-  .form ::placeholder {
-    color: hsl(0, 36%, 70%);
-  }
-
-  .form button {
-    margin-left: -55px;
-    height: 55px;
-    width: 95px;
-    position: absolute;
-    border-radius: 55px;
-    background-image: linear-gradient(135deg, hsl(0, 80%, 86%), hsl(0, 74%, 74%));
-    border: none;
-    box-shadow: -4px 6px 21px 3px hsl(0, 80%, 86%);
   }
 
   .image {
-    grid-area: image;
-    /* background-color: red; */
     background-image: url("./images/hero-desktop.jpg");
     background-repeat: no-repeat;
-    background-size: cover;
+    height: 100vh;
   }
 }
-
 
 /* Inherited styles */
 .attribution {

@@ -1,6 +1,9 @@
 var formErrors = false
 
-function submitSignUpForm () {
+function submitSignUpForm (e) {
+  console.log('submitted')
+  e.preventDefault();
+
   var email = document.getElementById('email-input').value
   if (email.length === 0) {
     formErrors = true
@@ -46,4 +49,5 @@ function inputChanged(event) {
 /**
  * Event Listeners
  */
+document.getElementById('sign-up-form-btn').addEventListener("click", submitSignUpForm)
 document.getElementById('email-input').addEventListener("input", inputChanged)

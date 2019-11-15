@@ -150,6 +150,10 @@ footer {
     justify-self: center;
   }
 
+  .text p {
+    margin-top: 30px;
+  }
+
   .text h2 {
     text-align: center;
     font-size: 2.6em;
